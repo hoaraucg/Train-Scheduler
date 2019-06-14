@@ -4,7 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <title>Employee Tracker</title>
+  <title>Homework 07 - Train Scheduler</title>
   <!-- Viewport HTML -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
@@ -17,17 +17,65 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!-- Firebase Core JavaScript Link -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
   <!-- Specific Firebase products we want (Database) -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+  <!-- Moment JS -->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 </head>
 
 <body>
- <tbody id="table-results">
-     
- </tbody>
+  <header>
+    <div class="jumbotron bg-dark mt-4">
+      <h1 class="display-4 text-light text-center"><i class="far fa-newspaper"></i>Train Schedules</h1>
+    </div>
+  </header>
 
-    <script src="assets/javascript/javascript.js" type="text/javascript"></script>
+  <table class="table border 2">
+    <thead>
+      <tr>
+        <th scope="col">Train Name</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Frequency</th>
+        <th scope="col">First Train</th>
+        <th scope="col">Next Arrival</th>
+        <th scope="col">Minutes Away</th>
+      </tr>
+    </thead>
+    <tbody id="table-results">
+
+    </tbody>
+  </table>
+
+
+  <div class="card">
+    <div class="card-header">
+      Trains List
+    </div>
+    <div class="card body p-2">
+      <form role="form">
+        <div class="form-group">
+          <label for="train-input">Train Name</label>
+          <input class="form-control" id="train-input" type="text">
+        </div>
+        <div class="form-group">
+          <label for="destination-input">Destination</label>
+          <input class="form-control" id="destination-input" type="text">
+        </div>
+        <div class="form-group">
+          <label for="frequency-input">Frequency</label>
+          <input class="form-control" id="frequency-input" type="number">
+        </div>
+        <div class="form-group">
+          <label for="time-input">First Train</label>
+          <input class="form-control" id="time-input" type="time">
+          <button class="btn btn-default" id="add-train" type="submit">Submit</button>
+      </form>
+      </ul>
+    </div>
+  </div>
+
+  <script src="assets/javascript/javascript.js" type="text/javascript"></script>
 </body>
 
 </html>
