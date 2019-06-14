@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Firebase database config
     var firebaseConfig = {
       apiKey: "AIzaSyAHJLR43ABZeeJCfzeXefQkChL9tTKtMBY",
       authDomain: "trainscheduler-d9278.firebaseapp.com",
@@ -19,8 +20,6 @@ $(document).ready(function () {
     var trainDestination;
     var trainFrequency;
     var firstTrain;
-    var trainNextArrival;
-    var trainMinutesAway;
 
     // Populate Firebase Database with initial data
     // Create on click even to capture form values and add trains to the database
@@ -76,27 +75,26 @@ $(document).ready(function () {
       var tFrequency = snapshot.val().trainFrequency;
       var tFirst = snapshot.val().firstTrain;
 
-      // ********************************
-
-      // Next Arrival and Minutes away calculations here
-      // Chang year so first train comes before now
-
-      var firstTrainNew = moment(snapshot.val().firstTrain, "HH:mm").subtract(1, "years");
+      // Change the year so first train comes before current time
+      var firstTrainNew = moment(tFirst, "HH:mm").subtract(1, "years");
+      console.log(firstTrainNew);
 
       // Difference between the current and firstTrain
       var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+      console.log(diffTime);
 
-      var remainder = diffTime % snapshot.val().frequency;
+      // Time Apart
+      var tRemainder = diffTime % tFrequency;
+      console.log(tRemainder);
 
       // Minutes until next train
-      var tMinutes = snapshot.val().frequency - remainder;
+      var tMinutes = tFrequency - tRemainder;
+      console.log(tMinutes);
 
       // Next train time
       var tNext = moment().add(tMinutes, "minutes");
       tNext = moment(tNext).format("hh:mm");
-
-      // ********************************
-
+      console.log(tNext);
 
       // Display results inside the table
       // Create vars to hold table elements and content
@@ -111,7 +109,7 @@ $(document).ready(function () {
       // Append all table data (td) to the table row (tr)
       tr.append(tdName, tdDestination, tdFrequency, tdFirst, tdNext, tdMinutes);
 
-      // append to tbody element
+      // Append to tbody element
       $("#table-results").append(tr);
 
     });
